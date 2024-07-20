@@ -1,0 +1,72 @@
+image: registry.skillbox.ru/maven:3.8.3-openjdk-17-slim
+
+stages:
+  - test
+  - codestyle
+  - report
+
+variables:
+  MAVEN_OPTS: "-Djava.awt.headless=true -Dmaven.repo.local=./.m2/repository"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
+
+cache:
+  paths:
+    - ./.m2/repository
+  # keep cache across branch
+  key: "$CI_COMMIT_REF_NAME"
+
+.maven-jobs:
+  tags:
+    - students
+  before_script:
+    - mvn clean
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - "src/main/java/practice/**/**"
+
+.test-jobs:
+  extends: .maven-jobs
+  stage: test
+  artifacts:
+    when: on_failure
+    expire_in: 1 week
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+  allow_failure: false
+
+String-SequentialWordsNumbers:
+  extends: .test-jobs
+  script:
+    - 'mvn -Dtest="string/SequentialWordsNumbersTests.java" test'
+
+Regex-SplitText:
+  extends: .test-jobs
+  script:
+    - 'mvn -Dtest="regex/SplitTextTests.java" test'
+
+Regex-PhoneCleaner:
+  extends: .test-jobs
+  script:
+    - 'mvn -Dtest="regex/PhoneCleanerRegexTests.java" test'
+
+codestyle:
+  extends: .maven-jobs
+  stage: codestyle
+  script:
+    - 'mvn verify -DskipTests'
+  when: always
+
+report:
+  extends: .maven-jobs
+  stage: report
+  script:
+    - 'mvn site'
+  artifacts:
+    when: always
+    paths:
+      - target/site
+    expire_in: 7 days
+  when: on_failure

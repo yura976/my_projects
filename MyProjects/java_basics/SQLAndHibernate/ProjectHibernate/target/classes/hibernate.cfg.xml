@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/MY_SKILLBOX_DATABASE?useSSL=false</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">rootROOT</property>
+        <property name="connection.pool_size">10</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">false</property>
+        <property name="format_sql">false</property>
+        <property name="use_sql_comments">false</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="ru.hibernate.Course"></mapping>
+        <mapping class="ru.hibernate.Student"></mapping>
+        <mapping class="ru.hibernate.Teacher"></mapping>
+        <mapping class="ru.hibernate.Subscriptions"></mapping>
+        <mapping class="ru.hibernate.PurchaseList"></mapping>
+        <mapping class="ru.hibernate.LinkedPurchaseList"></mapping>
+
+    </session-factory>
+</hibernate-configuration>

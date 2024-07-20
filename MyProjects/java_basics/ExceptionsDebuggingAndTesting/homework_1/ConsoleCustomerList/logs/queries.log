@@ -1,0 +1,9 @@
+2024-07-18 09:24:51.843 [main] INFO  Main - INFO
+2024-07-18 09:24:58.538 [main] INFO  CustomerStorage - Выполнен запрос команды - LIST.
+2024-07-18 09:25:04.796 [main] INFO  CustomerStorage - Выполнен запрос команды - COUNT.
+2024-07-20 16:50:23.485 [main] INFO  CustomerStorage - Выполнен запрос команды - ADD.
+2024-07-20 16:50:23.503 [main] INFO  CustomerStorage - Выполнен запрос команды - ADD.
+2024-07-20 16:50:23.506 [main] INFO  CustomerStorage - Выполнен запрос команды - ADD.
+2024-07-20 16:50:23.508 [main] INFO  CustomerStorage - Выполнен запрос команды - COUNT.
+2024-07-20 16:50:23.511 [main] INFO  CustomerStorage - Выполнен запрос команды - ADD.
+2024-07-20 16:50:23.514 [main] INFO  CustomerStorage - Выполнен запрос команды - ADD.
